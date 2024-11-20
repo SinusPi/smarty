@@ -1739,7 +1739,7 @@ class Smarty extends \Smarty\TemplateBase {
 			throw new Exception("unable to write file {$_filepath}");
 		}
 		// set file permissions
-		@chmod($_filepath, 0666 & ~umask());
+		if (function_exists("chmod")) @chmod($_filepath, 0666 & ~umask());
 		error_reporting($_error_reporting);
 		return true;
 	}
